@@ -10,7 +10,7 @@ setup ()
 
     KERNEL_DIR="$(dirname "$(readlink -f "$0")")"
     BUILD_DIR="$KERNEL_DIR/build"
-    MODULES=("drivers/bluetooth/bthid/bthid.ko" "drivers/samsung/j4fs/j4fs.ko" "drivers/scsi/scsi_wait_scan.ko" "drivers/net/wireless/bcm4330/dhd.ko" "fs/cifs/cifs.ko")
+    MODULES=("drivers/bluetooth/bthid/bthid.ko" "drivers/net/wireless/bcm4330/dhd.ko" "drivers/samsung/param/param.ko" "drivers/samsung/j4fs/j4fs.ko" "drivers/scsi/scsi_wait_scan.ko")
 
     if [ x = "x$NO_CCACHE" ] && ccache -V &>/dev/null ; then
         CCACHE=ccache
