@@ -14,10 +14,8 @@ FILES_PREFIX=
 ifneq ($(KBUILD_EXTMOD),)
 DRIVER_DIR=$(KBUILD_EXTMOD)
 else
-src?=.
-srctree?=.
-DRIVER_DIR?=$(srctree)/$(src)
-M?=$(DRIVER_DIR)
+DRIVER_DIR= $(KBUILD_SRC)/drivers/gpu/mali/mali400ko/driver/src/devicedrv/mali
+M=$(DRIVER_DIR)
 endif
 MALI_RELEASE_NAME=$(shell cat $(DRIVER_DIR)/.version 2> /dev/null)
 include $(DRIVER_DIR)/Makefile.platform
@@ -47,7 +45,8 @@ endif
 endif
 
 # Check if a Mali Core sub module should be enabled, true or false returned
-submodule_enabled = $(shell gcc $(DEFINES) -E $1/arch/config.h | grep type | grep -c $(2))
+# submodule_enabled = $(shell gcc $(DEFINES) -E $1/arch/config.h | grep type | grep -c $(2))
+submodule_enabled = $(shell set -x ; gcc $(DEFINES) -E $1/arch/config.h | grep type | grep -c $(2))
 
 # linux build system integration
 ifneq ($(KERNELRELEASE),)
